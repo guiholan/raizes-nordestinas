@@ -1,26 +1,116 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* base surfaces */
+  --bg: #0a1620;
+  --surface: #0f212b;
+  --surface-2: #152a36;
+
+  /* brand accents — azul e amarelo, per marca */
+  --azul: #2d7da0;
+  --azul-deep: #1c5a78;
+  --azul-claro: #6fc3e0;
+  --amarelo: #f0b92e;
+  --amarelo-deep: #c98f14;
+
+  /* rare accent, straight from the folhagem in the logo — used sparingly */
+  --verde: #3b8c42;
+
+  /* light contrast block, from the logo's peach field */
+  --creme: #f3d9b4;
+  --creme-deep: #e8c091;
+
+  --ink: #f5f1e8;
+  --ink-dim: #cdc6b8;
+  --ink-on-creme: #1c140c;
+
+  --line: rgba(245, 241, 232, 0.12);
+  --line-strong: rgba(245, 241, 232, 0.22);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+
+  --color-azul: var(--azul);
+  --color-azul-deep: var(--azul-deep);
+  --color-azul-claro: var(--azul-claro);
+  --color-amarelo: var(--amarelo);
+  --color-amarelo-deep: var(--amarelo-deep);
+  --color-verde: var(--verde);
+
+  --color-creme: var(--creme);
+  --color-creme-deep: var(--creme-deep);
+
+  --color-ink: var(--ink);
+  --color-ink-dim: var(--ink-dim);
+  --color-ink-on-creme: var(--ink-on-creme);
+
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-quote: var(--font-quote);
+
+  --breakpoint-xs: 400px;
+  --breakpoint-3xl: 1440px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: auto;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+::selection {
+  background: var(--amarelo);
+  color: var(--ink-on-creme);
+}
+
+/* thin custom scrollbar, brand-tinted */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-2);
+  border-radius: 999px;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* custom cursor hides the system one only when JS confirms fine pointer + motion is allowed */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
 }
