@@ -1,12 +1,4 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
-
-gsap.registerPlugin(ScrollTrigger);
 
 /**
  * The site's signature motif: a wavy ribbon, echoing both the costume
@@ -18,74 +10,18 @@ const WAVE_PATH =
 const WAVE_STROKE =
   "M0,20 C 60,0 120,40 180,20 C 240,0 300,40 360,20 C 420,0 480,40 540,20 C 600,0 660,40 720,20 C 780,0 840,40 900,20 C 960,0 1020,40 1080,20 C 1140,0 1200,40 1260,20";
 
-/** Fixed hairline ribbon that fills as the page scrolls. */
-export function RibbonProgress() {
-  const barRef = useRef<HTMLDivElement>(null);
-  const reducedMotion = useReducedMotion();
-
-  useEffect(() => {
-    if (reducedMotion || !barRef.current) return;
-    const el = barRef.current;
-    const trigger = ScrollTrigger.create({
-      trigger: document.documentElement,
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 0.3,
-      onUpdate: (self) => {
-        gsap.set(el, { scaleX: self.progress });
-      },
-    });
-    return () => trigger.kill();
-  }, [reducedMotion]);
-
-  return (
-    <div className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[5px] bg-surface/40">
-      <div
-        ref={barRef}
-        className="h-full w-full origin-left bg-gradient-to-r from-azul via-azul-claro to-amarelo"
-        style={{ transform: reducedMotion ? undefined : "scaleX(0)" }}
-      />
-    </div>
-  );
-}
-
 type RibbonDividerProps = {
   className?: string;
   tone?: "azul" | "amarelo";
   flip?: boolean;
 };
 
-/** Decorative wavy divider that draws itself in as it enters view. */
+/** Decorative wavy divider between sections. Static — no scroll-linked JS. */
 export function RibbonDivider({
   className,
   tone = "azul",
   flip = false,
 }: RibbonDividerProps) {
-  const pathRef = useRef<SVGPathElement>(null);
-  const reducedMotion = useReducedMotion();
-
-  useEffect(() => {
-    if (reducedMotion || !pathRef.current) return;
-    const el = pathRef.current;
-    gsap.set(el, { strokeDasharray: 1, strokeDashoffset: 1 });
-    const tween = gsap.to(el, {
-      strokeDashoffset: 0,
-      ease: "power2.out",
-      duration: 1.4,
-      scrollTrigger: {
-        trigger: el,
-        start: "top 85%",
-        once: true,
-      },
-    });
-    return () => {
-      tween.kill();
-      ScrollTrigger.getAll().forEach((t) => {
-        if (t.trigger === el) t.kill();
-      });
-    };
-  }, [reducedMotion]);
-
   return (
     <div
       className={cn(
@@ -101,17 +37,10 @@ export function RibbonDivider({
         className="h-6 w-full sm:h-10"
       >
         <path
-          ref={pathRef}
           d={WAVE_STROKE}
           fill="none"
           stroke={tone === "azul" ? "var(--azul-claro)" : "var(--amarelo)"}
           strokeWidth={2}
-          pathLength={1}
-          style={
-            reducedMotion
-              ? undefined
-              : { strokeDasharray: 1, strokeDashoffset: 1 }
-          }
         />
       </svg>
     </div>

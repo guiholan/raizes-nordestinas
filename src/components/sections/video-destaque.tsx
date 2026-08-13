@@ -1,51 +1,18 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Play } from "lucide-react";
 import { VIDEO_DESTAQUE } from "@/data/content";
 import { Magnetic } from "@/components/shared/magnetic";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useLightbox } from "@/components/shared/lightbox";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export function VideoDestaque() {
-  const maskRef = useRef<HTMLDivElement>(null);
-  const reducedMotion = useReducedMotion();
   const { open } = useLightbox();
-
-  useEffect(() => {
-    if (reducedMotion || !maskRef.current) return;
-    const el = maskRef.current;
-    gsap.set(el, { clipPath: "inset(6% 6% 6% 6% round 24px)" });
-    const tween = gsap.to(el, {
-      clipPath: "inset(0% 0% 0% 0% round 0px)",
-      ease: "power2.out",
-      duration: 1.1,
-      scrollTrigger: {
-        trigger: el,
-        start: "top 80%",
-        once: true,
-      },
-    });
-    return () => {
-      tween.kill();
-      ScrollTrigger.getAll().forEach((t) => {
-        if (t.trigger === el) t.kill();
-      });
-    };
-  }, [reducedMotion]);
 
   return (
     <section className="bg-bg px-5 sm:px-8">
       <div className="mx-auto max-w-[1440px] py-10 sm:py-16">
-        <div
-          ref={maskRef}
-          className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl sm:aspect-[21/9]"
-        >
+        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl sm:aspect-[21/9]">
           <Image
             src={VIDEO_DESTAQUE.image}
             alt={VIDEO_DESTAQUE.title}
