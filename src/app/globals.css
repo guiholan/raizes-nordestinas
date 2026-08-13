@@ -50,6 +50,15 @@
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
 
+  /* shadcn-standard aliases, mapped onto the brand palette above, so
+     drop-in shadcn/ui components (bg-muted, text-foreground, ring-ring…)
+     render correctly without needing per-component overrides. */
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --color-muted: var(--surface);
+  --color-muted-foreground: var(--ink-dim);
+  --color-ring: var(--azul-claro);
+
   --font-display: var(--font-display);
   --font-body: var(--font-body);
   --font-quote: var(--font-quote);
@@ -96,6 +105,19 @@ body {
 
 .animate-spin-slow {
   animation: spin-slow 30s linear infinite;
+}
+
+/* minimal tailwindcss-animate shim, just enough for animate-in/fade-in */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+.animate-in {
+  animation-fill-mode: both;
+}
+.fade-in {
+  animation-name: fade-in;
 }
 
 @media (prefers-reduced-motion: reduce) {

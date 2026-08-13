@@ -1,11 +1,11 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
-import Image from "next/image";
 import * as Tabs from "@radix-ui/react-tabs";
 import { TRADICOES_TABS } from "@/data/content";
 import { Reveal } from "@/components/shared/reveal";
-import { RibbonDivider, RibbonTrail } from "@/components/shared/ribbon";
+import { RibbonDivider } from "@/components/shared/ribbon";
+import { CoverflowCarousel } from "@/components/ui/coverflow-carousel";
 import { cn } from "@/lib/utils";
 
 export function Tradicoes() {
@@ -67,45 +67,21 @@ export function Tradicoes() {
             <Tabs.Content
               key={tab.key}
               value={tab.key}
-              className="mt-10 grid grid-cols-1 gap-6 outline-none data-[state=inactive]:hidden sm:grid-cols-2 lg:grid-cols-3"
+              className="mt-6 outline-none data-[state=inactive]:hidden"
             >
-              {tab.items.map((item) => (
-                <div
-                  key={item.nome}
-                  className="group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-surface"
-                >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden">
-                    <Image
-                      src={item.image}
-                      alt={item.nome}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/10 to-transparent" />
-                    <RibbonTrail />
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <h3 className="font-display text-lg font-bold uppercase tracking-wide text-ink">
-                      {item.nome}
-                    </h3>
-                    <p className="mt-3 flex-1 font-body text-sm leading-relaxed text-ink-dim">
-                      {item.descricao}
-                    </p>
-                    {item.confirmar && (
-                      <span className="mt-3 inline-block w-fit rounded-full border border-amarelo/40 bg-amarelo/10 px-3 py-1 font-body text-[10px] font-semibold uppercase tracking-wide text-amarelo">
-                        Nome a confirmar
-                      </span>
-                    )}
-                    <button
-                      className="mt-4 w-fit font-body text-sm font-semibold text-azul-claro underline-offset-4 hover:underline"
-                      data-cursor="Ver"
-                    >
-                      Saiba mais
-                    </button>
-                  </div>
-                </div>
-              ))}
+              <CoverflowCarousel
+                label={`Fotos de ${tab.label}`}
+                slides={tab.items.map((item) => ({
+                  src: item.image,
+                  alt: item.nome,
+                  title: item.nome,
+                  subtitle: item.descricao,
+                }))}
+                showCaption
+                showNavigation={tab.items.length > 1}
+                showPagination={tab.items.length > 1}
+                cardWidth="clamp(160px, 26vw, 320px)"
+              />
             </Tabs.Content>
           ))}
         </Tabs.Root>
