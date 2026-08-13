@@ -9,7 +9,7 @@ export function Diferenciais() {
       <div className="mx-auto max-w-[1440px]">
         <Reveal>
           <p className="font-body text-xs font-bold uppercase tracking-[0.25em] text-azul-claro">
-            Por que o Raízes Nordestinas
+            O Raízes Nordestinas
           </p>
           <h2 className="mt-4 max-w-2xl font-display text-3xl font-bold uppercase leading-[1.05] text-ink sm:text-4xl lg:text-5xl">
             Tradição viva, contada com o corpo inteiro

@@ -2,7 +2,6 @@ export const NAV_LINKS = [
   { label: "Início", href: "#inicio" },
   { label: "Sobre", href: "#sobre" },
   { label: "Tradições", href: "#tradicoes" },
-  { label: "Agenda", href: "#agenda" },
   { label: "Galeria", href: "#galeria" },
   { label: "Contato", href: "#contato" },
 ] as const;
@@ -111,19 +110,6 @@ export const TRADICOES_TABS: {
   },
 ];
 
-export type AgendaRow = {
-  data: string;
-  local: string;
-  horario: string;
-};
-
-// [DADOS A CONFIRMAR COM O GRUPO]
-export const AGENDA: AgendaRow[] = [
-  { data: "[DATA A CONFIRMAR]", local: "[LOCAL A CONFIRMAR]", horario: "[HORÁRIO A CONFIRMAR]" },
-  { data: "[DATA A CONFIRMAR]", local: "[LOCAL A CONFIRMAR]", horario: "[HORÁRIO A CONFIRMAR]" },
-  { data: "[DATA A CONFIRMAR]", local: "[LOCAL A CONFIRMAR]", horario: "[HORÁRIO A CONFIRMAR]" },
-];
-
 export const GALLERY_PHOTO = {
   src: "/images/grupo-palco-premiacao.jpg",
   alt: "Grupo completo do Raízes Nordestinas em trajes de gala no palco",
@@ -144,7 +130,6 @@ export const FOOTER = {
       links: [
         { label: "Sobre", href: "#sobre" },
         { label: "Tradições", href: "#tradicoes" },
-        { label: "Agenda", href: "#agenda" },
       ],
     },
     {
