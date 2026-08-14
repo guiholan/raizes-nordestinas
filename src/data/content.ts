@@ -58,41 +58,40 @@ export const TRADICOES_TABS: {
     label: "Folguedos",
     items: [
       {
-        nome: "Maracatu",
+        nome: "Cacuriá",
         descricao:
-          "Cortejo afro-brasileiro de cor e batuque, marcado pela caixa, pelos adereços dourados e pela força das mestras de bateria.",
+          "Folguedo maranhense de roda, com palmas, pandeiro e versos cantados em toadas animadas — celebração popular ligada ao ciclo junino do Maranhão.",
         image: "/images/maracatu-caixa.jpg",
       },
       {
-        nome: "Quadrilha Junina",
+        nome: "Cana Verde",
         descricao:
-          "Marcações e mudanças de par em homenagem às festas de São João, com trajes caipiras coloridos e muita animação.",
+          "Dança de par em quadrilha, com marcações coordenadas e trajes caipiras coloridos, celebrando as festas de São João.",
         image: "/images/quadrilha-verde-amarelo.jpg",
       },
       {
-        nome: "Reisado",
+        nome: "São Gonçalo",
         descricao:
-          "Cortejo devocional que reencena a Jornada dos Reis Magos, com mesa, cantos de louvor e presentes simbólicos.",
+          "Dança de promessa em devoção a São Gonçalo, com cortejo em torno de uma mesa ornamentada, cantos de louvor e presentes simbólicos.",
         image: "/images/cortejo-mesa.jpg",
       },
       {
-        nome: "Coco de Roda",
+        nome: "Colheita",
         descricao:
-          "Dança de roda ao som de palmas e pandeiro, com a peneira como símbolo do trabalho no campo nordestino.",
+          "Dança que celebra o trabalho no campo, com a peneira como símbolo da colheita e do dia a dia da lavoura nordestina.",
         image: "/images/peneira-noturna.jpg",
       },
       {
-        nome: "Pastoril",
+        nome: "Cana Verde",
         descricao:
-          "Auto natalino que reencena a chegada dos pastores ao presépio, com pastoras em trajes claros e o mestre-pastor à frente do cortejo.",
+          "Outro momento da dança de par em quadrilha, marcada pela coordenação dos passos e pelo colorido dos trajes em cena.",
         image: "/images/pastoril-casal.jpg",
       },
       {
-        nome: "Cordão de Fitas",
+        nome: "Boi da Paraíba",
         descricao:
-          "Coreografia em cortejo com capacetes ornamentados e fitas coloridas em movimento — nome do folguedo a confirmar com o grupo.",
+          "Variante paraibana do Bumba-meu-boi, em cordão, com capacetes ornamentados e fitas coloridas em movimento contínuo.",
         image: "/images/fitas-capacete.jpg",
-        confirmar: true,
       },
     ],
   },
