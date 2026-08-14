@@ -115,13 +115,12 @@ export const GALLERY_PHOTO = {
 };
 
 export const FOOTER = {
-  endereco: "[ENDEREÇO A CONFIRMAR]",
-  telefone: "[TELEFONE A CONFIRMAR]",
-  email: "[E-MAIL A CONFIRMAR]",
+  telefone: "Telefone Público: (85) 98776-3640",
+  email: "gruporaizesnordestinas@gmail.com",
   socials: [
-    { label: "Instagram", href: "#" },
+    { label: "Instagram", href: "https://www.instagram.com/gtfraizesnordestinas/" },
     { label: "TikTok", href: "#" },
-    { label: "YouTube", href: "#" },
+    { label: "YouTube", href: "https://www.youtube.com/user/GTFRaizesNordestinas" },
   ],
   linkColumns: [
     {

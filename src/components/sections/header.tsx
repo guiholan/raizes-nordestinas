@@ -19,6 +19,13 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   return (
     <header
       className={cn(
@@ -69,35 +76,72 @@ export function Header() {
 
         <button
           className="flex h-10 w-10 items-center justify-center text-ink lg:hidden"
-          onClick={() => setMenuOpen((v) => !v)}
-          aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+          onClick={() => setMenuOpen(true)}
+          aria-label="Abrir menu"
           aria-expanded={menuOpen}
         >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          <Menu size={24} />
         </button>
       </div>
 
-      {menuOpen && (
-        <div className="border-t border-line bg-bg px-5 pb-8 pt-4 lg:hidden">
-          <nav className="flex flex-col gap-1">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="rounded-lg px-3 py-3 font-body text-base font-medium text-ink-dim hover:bg-surface hover:text-amarelo"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-          <Button asChild className="mt-4 w-full">
+      {/* backdrop */}
+      <div
+        onClick={() => setMenuOpen(false)}
+        aria-hidden
+        className={cn(
+          "fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden",
+          menuOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        )}
+      />
+
+      {/* lateral drawer */}
+      <div
+        className={cn(
+          "fixed inset-y-0 right-0 z-50 flex w-[80%] max-w-sm flex-col border-l border-line-strong bg-bg transition-transform duration-300 ease-out lg:hidden",
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        )}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu de navegação"
+      >
+        <div className="flex h-20 items-center justify-between px-5">
+          <Image
+            src="/images/logo-transparent.png"
+            alt="Grupo de Tradições Folclóricas Raízes Nordestinas"
+            width={40}
+            height={40}
+            className="h-10 w-10"
+          />
+          <button
+            className="flex h-10 w-10 items-center justify-center text-ink"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Fechar menu"
+          >
+            <X size={24} />
+          </button>
+        </div>
+
+        <nav className="flex flex-col gap-1 px-5 pt-2">
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="rounded-lg px-3 py-3 font-body text-base font-medium text-ink-dim hover:bg-surface hover:text-amarelo"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="mt-auto px-5 pb-10">
+          <Button asChild className="w-full">
             <a href="#contato" onClick={() => setMenuOpen(false)}>
               Fale com o grupo
             </a>
           </Button>
         </div>
-      )}
+      </div>
     </header>
   );
 }

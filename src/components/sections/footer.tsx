@@ -31,7 +31,6 @@ export function Footer() {
               os folguedos do Nordeste brasileiro.
             </p>
             <div className="mt-6 space-y-1 font-body text-sm text-ink-on-creme/75">
-              <p>{FOOTER.endereco}</p>
               <p>{FOOTER.telefone}</p>
               <p>{FOOTER.email}</p>
             </div>
@@ -64,10 +63,13 @@ export function Footer() {
             <div className="mt-4 flex gap-3">
               {FOOTER.socials.map((s) => {
                 const Icon = SOCIAL_ICONS[s.label as keyof typeof SOCIAL_ICONS];
+                const external = s.href.startsWith("http");
                 return (
                   <a
                     key={s.label}
                     href={s.href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
                     aria-label={s.label}
                     data-cursor={s.label}
                     className="flex h-10 w-10 items-center justify-center rounded-full border border-ink-on-creme/20 text-ink-on-creme transition-colors hover:border-azul-deep hover:text-azul-deep"

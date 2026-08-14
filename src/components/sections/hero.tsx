@@ -32,7 +32,7 @@ export function Hero() {
         <p className="mb-4 font-body text-xs font-bold uppercase tracking-[0.25em] text-amarelo sm:text-sm">
           {HERO.eyebrow}
         </p>
-        <h1 className="font-display text-[15vw] font-extrabold uppercase leading-[0.92] tracking-tight text-ink sm:text-[9vw] lg:text-[7.5vw] 3xl:text-[6.5vw]">
+        <h1 className="break-words font-display text-[9.5vw] font-extrabold uppercase leading-[0.95] tracking-tight text-ink sm:text-[9vw] lg:text-[7.5vw] 3xl:text-[6.5vw]">
           {HERO.title}
         </h1>
         <p className="mt-6 max-w-xl font-body text-base leading-relaxed text-ink-dim sm:text-lg">
